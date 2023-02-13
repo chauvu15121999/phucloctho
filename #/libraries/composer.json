@@ -1,0 +1,6 @@
+{
+    "require": {
+        "nesbot/carbon": "^1.39",
+        "gilbitron/easycsrf": "^1.0"
+    }
+}

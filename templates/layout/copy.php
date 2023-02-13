@@ -1,0 +1,1 @@
+Copyrights © 2018 <?=$company['ten']?>. All rights reserved.

@@ -1,0 +1,3 @@
+<!-- <a style="z-index:60;left:0;bottom:10%;position:fixed;" href="javascript:void(window.open('https://zalo.me/<?=preg_replace('/[^0-9]/','',$company['dienthoai']);?>','','width=850,height=500,left=300,top=100,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))"><img src="images/zalo.png" alt="Chat zalo" /></a> -->
+
+<a style="z-index:60;left:0;bottom:10%;position:fixed;" href="https://zalo.me/<?=preg_replace('/[^0-9]/','',$company['dienthoai']);?>" target='_blank'><img src="images/zalo.png" alt="Chat zalo" /></a>

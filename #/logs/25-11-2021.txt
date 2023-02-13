@@ -1,0 +1,6 @@
+66.249.71.159()--query--tables(delete from table_user_online where time < 1637816047) (12:04:07 25/11/2021)
+14.161.23.79()--query--tables(delete from table_user_online where time < 1637820211) (13:13:31 25/11/2021)
+14.161.23.79(admin)--query--tables(delete from table_user_online where time < 1637820270) (13:14:30 25/11/2021)
+14.161.23.79(admin)--query--tables(delete from table_user_online where time < 1637820270) (13:14:30 25/11/2021)
+14.161.23.79(admin)--query--tables(delete from table_user_online where time < 1637820979) (13:26:19 25/11/2021)
+14.161.23.79(admin)--query--tables(delete from table_user_online where time < 1637820979) (13:26:19 25/11/2021)

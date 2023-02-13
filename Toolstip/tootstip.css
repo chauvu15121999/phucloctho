@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+#AjaxPopup
+{
+    width:320px;
+    z-index: 2000;
+}
+#AjaxPopupText
+{
+	background: #fff;
+    border: 1px solid #e2e2e2;
+    z-index: 2000;
+    position: relative;
+    font-size: 13px;
+}
+#AjaxPopupText .ten
+{
+	background:#0281EA;
+	color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    padding:10px 15px;
+    font-weight: normal;
+    display: block;
+}
+#AjaxPopupText .chitiet
+{
+	list-style:none;
+	padding:10px 15px;
+}
+#AjaxPopupText .chitiet li
+{
+	padding: 4px 0;
+}
+#AjaxPopupText .chitiet li .giakm
+{
+	color:red;
+	margin-left:5%;
+	font-size:15px;
+}
+#AjaxPopupText .chitiet .gia
+{
+	color:red;
+	font-size:15px;
+}
+#AjaxPopupText .chitiet .giacu
+{
+	text-decoration:line-through;
+	color:#111111;
+	
+}

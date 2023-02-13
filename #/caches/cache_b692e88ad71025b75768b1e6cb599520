@@ -1,0 +1,36 @@
+a:2:{i:0;i:1657554603;i:1;a:8:{s:2:"id";s:2:"18";s:7:"options";s:747:"{"mailertype":"1","ip_host":"127.0.0.1","port_host":"25","secure_host":"tls","email_host":"noreply@doxanhtrang.com","password_host":"NjTDSpDM","host_gmail":"smtp.gmail.com","port_gmail":"587","secure_gmail":"tls","email_gmail":"autosendnoreply01@gmail.com","password_gmail":"qlfezbwlaqchtqdo","lang_default":"vi","diachi":"37 L\u00e2m Th\u1ecb H\u1ed1, T\u00e2n Ch\u00e1nh Hi\u1ec7p, Qu\u1eadn 12, HCM","email":"7sportstore@gmail.com","hotline":"0886686839","dienthoai":"","zalo":"0886686839","oaidzalo":"6","website":"7sport.vn","fanpage":"https:\/\/www.facebook.com\/dobongdachat","toado_iframe":"","toado":"","price":"22759","APIURL":"http:\/\/206.189.158.179:8080","tronAPI":"HGQdazGE4B7NwWFjVc7Z6hN7Snp9sMwL","youtube":"1","ins":"2","tw":"3"}";s:10:"mastertool";s:242:"&lt;meta name=&quot;google-site-verification&quot; content=&quot;GnUhQ0meb0ExWM3hfZGRKFatXWCsrEpJBYQ7xJu0krs&quot; /&gt;
+&lt;meta name=&quot;google-site-verification&quot; content=&quot;3tFfFAIVPYlB8FQ5Hg3hu5zyTcXK0SOiKhZkqgAPNdQ&quot; /&gt;";s:6:"headjs";s:0:"";s:6:"bodyjs";s:1013:"&lt;!-- Messenger Plugin chat Code --&gt;
+    &lt;div id=&quot;fb-root&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- Your Plugin chat code --&gt;
+    &lt;div id=&quot;fb-customer-chat&quot; class=&quot;fb-customerchat&quot;&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute(&quot;page_id&quot;, &quot;100665979083948&quot;);
+      chatbox.setAttribute(&quot;attribution&quot;, &quot;biz_inbox&quot;);
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    &lt;/script&gt;";s:5:"tenvi";s:15:"doxanhtrang.com";s:5:"tenen";s:13:"Luxtop5 Store";s:9:"analytics";s:361:"&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-1EDP14168G&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-1EDP14168G');
+&lt;/script&gt;";}}
