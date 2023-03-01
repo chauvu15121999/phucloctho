@@ -1218,7 +1218,7 @@ function onSearch(evt) {
 
 
 <?php }?>
-<?php if($type == 'tin-tuc'){?>
+<?php if( isset($type) && $type == 'tin-tuc'){?>
 	<link rel="stylesheet" href="jquery.mCustomScrollbar.css">
 	<script src="jquery.mCustomScrollbar.concat.min.js"></script>
 	<script>

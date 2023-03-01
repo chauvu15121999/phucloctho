@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c
 {
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Valitron\\' => 9,
+        ),
         'M' => 
         array (
             'MatthiasMullie\\PathConverter\\' => 29,
@@ -15,6 +19,10 @@ class ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Valitron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/valitron/src/Valitron',
+        ),
         'MatthiasMullie\\PathConverter\\' => 
         array (
             0 => __DIR__ . '/..' . '/matthiasmullie/path-converter/src',
@@ -25,11 +33,16 @@ class ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitc93345d038c16b5c2d03ea6c61f6679c::$classMap;
 
         }, null, ClassLoader::class);
     }

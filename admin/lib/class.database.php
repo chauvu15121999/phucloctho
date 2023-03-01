@@ -1,7 +1,7 @@
 <?php if(!defined('_lib')) die("Error");
 $phpv=(float)phpversion();
 if($phpv<7){
-class database{ 
+class database_db{ 
 	var $db;
 	var $result;
 	var $insert_id;
@@ -73,9 +73,9 @@ if(strpos($v['Type'], 'int') !== false | strpos($v['Type'], 'float') !== false |
 			$key .= "," . $k;
 			$value .= ",'" . magic_quote($v)  ."'";
 		}
-		if($key{0} == ",") $key{0} = "(";
+		if($key[0] == ",") $key[0] = "(";
 		$key .= ")";
-		if($value{0} == ",") $value{0} = "(";
+		if($value[0] == ",") $value[0] = "(";
 		$value .= ")";
 		$this->sql = "insert into ".$this->refix.$this->table.$key." values ".$value;
 		//echo $this->sql;die;
@@ -109,7 +109,7 @@ if(strpos($v['Type'], 'int') !== false | strpos($v['Type'], 'float') !== false |
 			$values .= ", " . $k . " = '" . magic_quote($v)  ."' ";
 		}
 		//echo $this->where;die;
-		if($values{0} == ",") $values{0} = " ";
+		if($values[0] == ",") $values[0] = " ";
 		$this->sql = "update " . $this->refix . $this->table . " set " . $values;
 		$this->sql .= $this->where;
 		return $this->query();
@@ -315,9 +315,9 @@ if(strpos($v['Type'], 'int') !== false | strpos($v['Type'], 'float') !== false |
 			$key .= "," . $k;
 			$value .= ",'" . magic_quote($v)  ."'";
 		}
-		if($key{0} == ",") $key{0} = "(";
+		if($key[0] == ",") $key[0] = "(";
 		$key .= ")";
-		if($value{0} == ",") $value{0} = "(";
+		if($value[0] == ",") $value[0] = "(";
 		$value .= ")";
 		$this->sql = "insert into ".$this->refix.$this->table.$key." values ".$value;
 		//echo $this->sql;die;
@@ -351,7 +351,7 @@ if(strpos($v['Type'], 'int') !== false | strpos($v['Type'], 'float') !== false |
 			$values .= ", " . $k . " = '" . magic_quote($v)  ."' ";
 		}
 		//echo $this->where;die;
-		if($values{0} == ",") $values{0} = " ";
+		if($values[0] == ",") $values[0] = " ";
 		$this->sql = "update " . $this->refix . $this->table . " set " . $values;
 		$this->sql .= $this->where;
 		return $this->query();

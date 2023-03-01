@@ -7,7 +7,7 @@
 	@$id =   (int)trim(strip_tags(addslashes($_GET['id'])));
 
 	$fill='';
-	if((int)$_GET['result']>0){
+	if(isset($_GET['result']) && (int)$_GET['result']>0){
 		$fill.=' and id_thuonghieu='.(int)$_GET['result'];
 	}
 	if((int)$_GET['gia']>0){

@@ -1,7 +1,7 @@
 <?php 
 
 	include ("ajax_config.php");
-	
+	$return = [];
 	if(!empty($_POST) && !empty($_POST['recaptcha_response'])){
 	    $recaptchaName = $_POST['recaptcha_response'];
 	    $req = array(
@@ -17,64 +17,67 @@
 		$rep = curl_exec($verify);
 		curl_close($rep);
 	    $rep = json_decode($rep);
-	    if($rep->score >= 0.5 && $rep->action=='quenmk') {
+	    if($rep->score >= 0.5 && $rep->action=='quenmk' || $config['env'] != 'production') {
+			$v = new Valitron\Validator($_POST);
+			$v->rule('required', 'emailForget')->message('Vui lòng nhập email');
+			$v->rule('email', 'emailForget')->message('Vui lòng nhập đúng định dạng email');
+			if($v->validate()) {
+				$email = magic_quote($_POST['emailForget']);
+				$d->reset();
+				$sql = "select * from #_thanhvien where email='".$email."'";
+				$d->query($sql);
+				$row = $d->fetch_array();
+				if(!empty($row)){
+					include_once "../sources/phpMailer/class.phpmailer.php";
+					$mail = new PHPMailer();
+					$mail->IsSMTP(); 				// Gọi đến class xử lý SMTP
+					$mail->Host       = $ip_host;   // tên SMTP server
+					$mail->SMTPAuth   = true;       // Sử dụng đăng nhập vào account
+					$mail->Username   = $mail_host; // SMTP account username
+					$mail->Password   = $pass_mail;
 
-	    	$email = magic_quote($_POST['email_quenmk']);
+					//Thiết lập thông tin người gửi và email người gửi
+					$mail->SetFrom($mail_host,$company['ten']);
 
-			$d->reset();
-			$sql = "select * from #_thanhvien where email='".$email."'";
-			$d->query($sql);
-			$row = $d->fetch_array();
-			if(!empty($row)){
+					//Thiết lập thông tin người nhận và email người nhận
+					$mail->AddAddress($row['email'], $row['hoten']);
 
-				
+					//Thiết lập tiêu đề email
+					$mail->Subject    = $company['ten']." xin cung cấp lại thông tin tài khoản của bạn trên website ".$_SERVER["SERVER_NAME"];
+					$mail->IsHTML(true);
 
-				include_once "../sources/phpMailer/class.phpmailer.php";
-				$mail = new PHPMailer();
-				$mail->IsSMTP(); 				// Gọi đến class xử lý SMTP
-				$mail->Host       = $ip_host;   // tên SMTP server
-				$mail->SMTPAuth   = true;       // Sử dụng đăng nhập vào account
-				$mail->Username   = $mail_host; // SMTP account username
-				$mail->Password   = $pass_mail;
+					//Thiết lập định dạng font chữ tiếng việt
+					$mail->CharSet = "utf-8";
+					$body = 'Xin chào '.$row['hoten'].',';
+					$body .= '<br/>';
+					$body .= 'Bạn vừa thực hiện yêu cầu lấy lại mật khẩu. Để hoàn tất việc lấy lại mật khẩu, vui lòng nhấn vào đường dẫn dưới đây hoặc chép và dán vào trình duyệt:';
+					$body .= '<br/>';
+					$body .= '<a href="'.$http.$config_url.'/forgotpass.php?uid='.$row['id'].'&key='.$row['md5_key'].'" target="_blank">'.$http.$config_url.'/forgotpass.php?uid='.$row['id'].'&key='.$row['md5_key'].'</a>';
+					$body .= '<br/>';
+					$body .= 'Nếu không phải bạn thực hiện, vui lòng <b>KHÔNG</b> nhấn vào đường dẫn trên.';
 
-				//Thiết lập thông tin người gửi và email người gửi
-				$mail->SetFrom($mail_host,$company['ten']);
+					$mail->Body = $body;
+					if($mail->Send()){
+						$return['status'] = 200;
+						$return['mess'] = 'Chúng tôi đã gửi đường link reset lại mật khẩu vào email '.$email.' của bạn. Vui lòng làm theo hướng dẫn trong mail để lấy lại mật khẩu. Cảm ơn.';
+					}else{
+						$return['status'] = 204;
+						$return['message'] = 'Hệ thống gửi mail đang được bảo trì';
+					}
 
-				//Thiết lập thông tin người nhận và email người nhận
-				$mail->AddAddress($row['email'], $row['hoten']);
-
-				//Thiết lập tiêu đề email
-				$mail->Subject    = $company['ten']." xin cung cấp lại thông tin tài khoản của bạn trên website ".$_SERVER["SERVER_NAME"];
-				$mail->IsHTML(true);
-
-				//Thiết lập định dạng font chữ tiếng việt
-				$mail->CharSet = "utf-8";
-				$body = 'Xin chào '.$row['hoten'].',';
-				$body .= '<br/>';
-				$body .= 'Bạn vừa thực hiện yêu cầu lấy lại mật khẩu. Để hoàn tất việc lấy lại mật khẩu, vui lòng nhấn vào đường dẫn dưới đây hoặc chép và dán vào trình duyệt:';
-				$body .= '<br/>';
-				$body .= '<a href="'.$http.$config_url.'/forgotpass.php?uid='.$row['id'].'&key='.$row['md5_key'].'" target="_blank">'.$http.$config_url.'/forgotpass.php?uid='.$row['id'].'&key='.$row['md5_key'].'</a>';
-				$body .= '<br/>';
-				$body .= 'Nếu không phải bạn thực hiện, vui lòng <b>KHÔNG</b> nhấn vào đường dẫn trên.';
-
-				$mail->Body = $body;
-				if($mail->Send()){
-					$return['error'] = 0;
-					$return['mess'] = 'Chúng tôi đã gửi đường link reset lại mật khẩu vào email '.$email.' của bạn. Vui lòng làm theo hướng dẫn trong mail để lấy lại mật khẩu. Cảm ơn.';
 				}else{
-					$return['error'] = 1;
-					$return['mess'] = 'Hệ thống gửi mail đang được bảo trì';
+					$return['status'] = 400;
+					$return['message'] = array(
+						'emailForget' => array('Tài khoản không tồn tại.')
+					);
 				}
 
-			}else{
-				$return['error'] = 1;
-				$return['mess'] = 'Tài khoản không tồn tại. Vui lòng kiểm tra lại tài khoản.';
+			} else {
+				$return['status'] = 500;
+				$return['message'] = $v->errors();
 			}
-
-
-
 		}else{
-			$return['error'] = 1;
+			$return['status'] = 500;
 			$return['mess'] = 'Vui lòng tải lại trang.';
 		}
 	}

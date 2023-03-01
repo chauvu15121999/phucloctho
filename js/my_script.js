@@ -1,4 +1,4 @@
-<!--Nut Back to top-->
+// Nut Back to top
 $(document).ready(function() {
    setTimeout(function(){
 	   $(".wap_load").fadeOut(1000);
@@ -32,13 +32,13 @@ $(document).ready(function() {
       	}, 700);
 	});
 });
-<!--Nut Back to top-->
+// Nut Back to top
 
-<!--Kiểm tra liên hệ-->
+// Kiểm tra liên hệ-
 function isEmpty(str,text){
-		if(str != "") return false;
-		if(typeof(text) != 'undefined')	alert(text);
-		return true;
+	if(str != "") return false;
+	if(typeof(text) != 'undefined')	alert(text);
+	return true;
 }
 function isPhone(str,text){
 	if((str.length==10 && (str.substr(0,1)==0)))
@@ -104,4 +104,39 @@ function add_popup(str){
 	$('#baophu').fadeIn(300);
 	return false;
 }
-<!--Kiểm tra liên hệ-->
+
+// Show mess validate 
+function showValidDate(inputEl , idFeedbackEl , text = '', isValid = true, clear = false) {
+	if( clear ) {
+		idFeedbackEl.empty();
+		return true;
+	}
+	if ( isValid ) {
+		inputEl.removeClass('is-invalid');
+		inputEl.addClass('is-valid');
+		idFeedbackEl.empty();
+		return isValid;
+	} else {
+		inputEl.removeClass('is-valid');
+		inputEl.addClass('is-invalid');
+		idFeedbackEl.empty();
+		idFeedbackEl.append(text);
+		return isValid;
+	}
+}
+// Kiểm tra liên hệ
+
+function callApi(url, data, method, ) {
+	var _return;
+	$.ajax({
+		type: method,
+		url,
+		data,
+		async: false, 
+		dataType:'json',
+		success: function (json) {
+			_return = json;
+		}
+	});
+	return _return;
+}

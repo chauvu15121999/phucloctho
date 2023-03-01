@@ -24,3 +24,5 @@
 	include_once _lib."functions_user.php";
 	include_once _lib."functions_giohang.php";
 	include_once _lib."file_requick.php";
+	include_once "../vendor/autoload.php";
+

@@ -1,5 +1,5 @@
 <?php if(!defined('_lib')) die("Error");
-	
+	$config['env'] = 'production';
 	//error_reporting(E_ALL & ~E_NOTICE & ~8192);
 	error_reporting(0);
 	if(strpos($_SERVER['REQUEST_URI'],"/admin/")===false){

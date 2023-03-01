@@ -149,7 +149,7 @@
 	}
 
 	function get_total(){
-		$max=count($_SESSION['cart']);
+		$max= isset($_SESSION['cart']) ? count($_SESSION['cart']) : '';
 		$sum=0;
 		for($i=0;$i<$max;$i++){
 			if(empty($_SESSION['cart'][$i]['productid'])) continue;

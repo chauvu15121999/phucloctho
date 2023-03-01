@@ -319,7 +319,7 @@
 
 	if($source!="") include _source.$source.".php";
 
-	if($_REQUEST['com']=='logout')
+	if(!empty($_REQUEST['com']) && $_REQUEST['com']=='logout')
 	{
 		session_unregister($login_name);
 		header("Location:index.php");

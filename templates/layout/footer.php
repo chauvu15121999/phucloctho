@@ -2,9 +2,9 @@
 
 
 <?php $chinhsach = get_news('chinh-sach-mua-hang',5); ?>
-<div class="wap_footer clearfix">
-	<div class="footer clearfix">
-		<div class="wrap-footer">
+<div class="wap_footer">
+	<div class="footer container p-0">
+		<div class="wrap-footer row">
 			<div class="col col-1">
 				<div class="big-title">CHĂM SÓC KHÁCH HÀNG</div>
 				<div class="content">
@@ -43,6 +43,12 @@
 						echo '<img src="'._upload_hinhanh_l.$row['photo'].'" />';
 					?>
 				</div>
+				<div class="content mt-2 congthuong">
+					<?php 
+						$row = $d->fetch_array($d->query('select photo from #_background where type="congthuong"'));
+						echo '<img src="'._upload_hinhanh_l.$row['photo'].'" />';
+					?>
+				</div>
 			</div>
 			<div class="col col-4">
 				<div class="big-title">HỖ TRỢ NHANH</div>
@@ -50,15 +56,12 @@
 					<?php 
 						$rows = $d->result_array($d->query("select * from #_yahoo where type='yahoo' and hienthi > 0 order by stt asc,id desc"));
 						foreach($rows as $k=>$v){
-						
 							?>
-							<div class="support-item">
-								<div class='name'><i class="fa fa-user"></i>&nbsp; <?=$v['ten']?></div>
-								<div class="line"><i class="fa fa-phone"></i>&nbsp; Hotline: <span><?=$v['dienthoai']?></span></div>
-								<div class="line"><i class="fa fa-envelope"></i>&nbsp; Email: <span><?=$v['email']?></span></div>
-
-							</div>
-
+								<div class="support-item">
+									<div class='name'><i class="fa fa-user"></i>&nbsp; <?=$v['ten']?></div>
+									<div class="line"><i class="fa fa-phone"></i>&nbsp; Hotline: <span><?=$v['dienthoai']?></span></div>
+									<div class="line"><i class="fa fa-envelope"></i>&nbsp; Email: <span><?=$v['email']?></span></div>
+								</div>
 							<?php 
 						}
 					?>
@@ -75,12 +78,7 @@
 					?>
 				</div>
 			</div>
-
-
-
 		</div>
-		
-		
 		<?php /*
 		<?php if($deviceType == 'computer') {?>
 			<div id="tuvan">

@@ -24,22 +24,20 @@ $().ready(function(){
 		}
 		i.val(v);
 	})
-
-	$(document).on('click','.trigger-login',function() {
-	$tab = $(this).data("tab");
-	$(".head_tab div[data-id='"+$tab+"']").trigger("click");
-	var root = $('.dknt_fix_content');
-	root.find('.dknt_fix').addClass('dknt_fix_active');
-	$('.shadow_dknt').addClass('shadow_dknt_avtic');
-	
-	return false;
-});
-//Click vào nút Close comment
-$(document).on('click','.close_dknt',function() {
+	const myModal = document.getElementById('login-signup-modal')
+	console.log(myModal);
+	myModal.addEventListener('show.bs.modal', (ev) => {
+	  var invoker = ev.relatedTarget
+	  var selected_tab = invoker.getAttribute("data-tab-id")
+	  const tab_btn = document.querySelector('#' + selected_tab)
+	  const tab = new bootstrap.Tab(tab_btn)
+	  tab.show()
+	})
+	//Click vào nút Close comment
+	$(document).on('click','.close_dknt',function() {
 	var root = $('.dknt_fix_content');
 	root.find('.dknt_fix').removeClass('dknt_fix_active');
 	$('.shadow_dknt').removeClass('shadow_dknt_avtic');
 	});
-
-	
 })
+

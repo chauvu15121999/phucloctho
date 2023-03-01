@@ -19,7 +19,9 @@
 <meta property="og:site_name" content="<?=$company['ten']?>" />
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="<?=getCurrentPageURL();?>" />
-<?php if($id>0 or $source=='about') { ?>
+<?php 
+	if( ( !empty($id) && $id>0) || $source=='about') { 
+?>
 	<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51c3fae12493146d"></script>
 <?php } ?>

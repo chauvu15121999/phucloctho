@@ -35,7 +35,7 @@ include_once "vendor/autoload.php";
 function get_http(){
 
 	$pageURL = 'http';
-	if ($_SERVER["HTTPS"] == "on") {
+	if (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
 		$pageURL .= "s";
 	}
 	$pageURL .= "://";
@@ -194,22 +194,20 @@ window.setInterval('flakeFall();',100);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
 	<div class="header-overlay"></div>
-	<div id="wapper">
+	<div id="wapper" class="container-fluid p-0">
 		<div class="wrap">
-			<?php include _template."layout/header.php";?>
-			<?php include _template."layout/menu_top.php";?>
-			<div class="main_content clearfix <?php if($source=='index'){ echo 'margin0 border_home';} ?>">
-
-				
-				
+			<div class="header">
+				<?php include _template."layout/header.php";?>
+				<?php include _template."layout/menu_top.php";?>
+			</div>
+			<div class="main_content  container <?php if($source=='index'){ echo 'margin0 border_home';} ?>">
 				<?php include _template."layout/slider_jssor.php";?>
 				<?php if($source!="index"){ echo $bread->get();}?>
-				<?php include _template.$template."_tpl.php"; ?>
+				<?php include _template.$template."_tpl.php"; ?> 
 			</div>
 			<div class="f">
-			<?php include _template."layout/doitac.php";?>
-			
-              <?php include _template."layout/footer.php";?>
+				<?php include _template."layout/doitac.php";?>
+				<?php include _template."layout/footer.php";?>
 				<?php //if($deviceType == 'computer') { include _template."layout/sphot.php"; }?>
 			</div>
 		</div>
@@ -388,5 +386,6 @@ window.setInterval('flakeFall();',100);
 <button class="close-overlay"><span>✖</span> Đóng</button>
 <div class="shadow_dknt"></div>
 <script src="js/custom.js?<?=time()?>"></script>
+<?php include _template."layout/script.php";?>
 </body>
 </html>
