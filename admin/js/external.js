@@ -7,7 +7,9 @@ function IncludeJavaScript(jsFile)
 IncludeJavaScript('js/jquery-1.11.2.min.js');
 IncludeJavaScript('js/plugins/spinner/jquery.mousewheel.js');
 IncludeJavaScript('js/jquery-ui.min.js');
-IncludeJavaScript('js/plugins/forms/jquery.uniform.js');
+if (!document.getElementsByClassName("customFrom")) {
+	IncludeJavaScript('js/plugins/forms/jquery.uniform.js');
+} 
 IncludeJavaScript('js/plugins/forms/jquery.validationEngine-en.js');
 IncludeJavaScript('js/plugins/forms/jquery.validationEngine.js');
 IncludeJavaScript('js/plugins/forms/jquery.tagsinput.min.js');

@@ -1,7 +1,68 @@
-.footer {
+.f {
     .congthuong {
         img {
             width: 75%;
+        }
+    }
+    .wrap-footer {
+        padding: 10px 0 ;
+        background: $main_background;
+        color: $color_white !important;    
+        .footer-item {
+            margin-top: 0;
+            .big-title {
+                font-weight: bold;
+                font-size: $font-size-sm;
+                margin-bottom: 10px;
+            }
+            .content {
+                padding: 0 ;
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+                li {
+                    margin-bottom: 7px;
+                    a {
+                        font-size: $font-size-sm;
+                        color: $color_white;
+                    }
+                }
+                .support-item {
+                    font-size: $font-size-sm;
+                    margin-bottom: 10px;
+                }
+
+                &.payment , &.shipping {
+                    .image-payment {
+                        background: #fff;
+                        margin-left: 10px;
+                        margin-bottom: 10px;
+                        // box-shadow: 0 5px 5px #00000033;
+                        // box-sizing: border-box;
+                        a {
+                            width: 100%;
+                            height: 100%;
+                            box-sizing: border-box;
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            img {
+                                max-width: 100px;
+                                max-height: 100px;
+                                margin: 5px auto;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            @media (max-width: $desktop-width) {
+                margin-top: 10px;
+            }
         }
     }
 }

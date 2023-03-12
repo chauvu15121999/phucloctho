@@ -59,7 +59,7 @@ switch($act){
 		$template = "index";
 }
 function kiot($kind)
-	{
+{
 		global $func, $d, $kiot, $link, $setting;
 		$optsetting = (isset($setting['options']) && $setting['options'] != '') ? json_decode($setting['options'],true) : null;
 		if($kind == 'importKiotCategory')
@@ -100,24 +100,24 @@ function kiot($kind)
 				$kiot->pushInvoicesFromKiot($API);
 			}
 		}
-	}
+}
 
-	function kiot_upload()
+function kiot_upload()
+{
+	global $func, $d, $config, $kiot, $type, $link;
+	foreach($kiot->getAllProduct()->data as $k => $v)
 	{
-		global $func, $d, $config, $kiot, $type, $link;
-		foreach($kiot->getAllProduct()->data as $k => $v)
-		{
-			$data_code[] = $v->code;
-		}
-		
-		$item = $d->rawQuery("select * from #_product where type=?", array($type));
-		foreach($item as $k => $v)
-		{
-			if(!in_array($v['code'], $data_code) && !empty($v['code']))
-			{
-				$kiot->addProductByApi($v);
-				$result['push']++;
-			}
-		}
-		$func->transfer("Upload thành công", $link, "success");
+		$data_code[] = $v->code;
 	}
+	
+	$item = $d->rawQuery("select * from #_product where type=?", array($type));
+	foreach($item as $k => $v)
+	{
+		if(!in_array($v['code'], $data_code) && !empty($v['code']))
+		{
+			$kiot->addProductByApi($v);
+			$result['push']++;
+		}
+	}
+	$func->transfer("Upload thành công", $link, "success");
+}
