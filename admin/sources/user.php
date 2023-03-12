@@ -254,6 +254,31 @@ function edit(){
 	}
 }
 
+function login() {
+	global $d, $login_name_admin,$config;
+	$username = (string)$_POST['username'];
+	$password = (string)$_POST['password'];
+
+	$sql = "select * from #_user where username='".$username."'";
+	$d->query($sql);
+	
+	if($d->num_rows() == 1){
+		$row = $d->fetch_array();
+		if($row['password'] == encrypt_password($config['salt_sta'],$password,$config['salt_end'])){
+			$_SESSION[$login_name_admin] = true;
+			$_SESSION['login_admin']['role'] = $row['role'];
+			$_SESSION['login_admin']['nhom'] = $row['nhom'];
+			$_SESSION['login_admin']['com'] = $row['com'];
+			$_SESSION['isLoggedIn'] = true;
+			$_SESSION['login_admin']['username'] = $username;
+			$_SESSION['login_admin']['name'] = $row['ten'];
+			$_SESSION['ck'] = $config_url;
+			transfer("Đăng nhập thành công", "index.php");
+		}else echo '<script>alert("Mật khẩu không chính xác")</script>';
+	}else
+	echo '<script>alert("Tên đăng nhập không tồn tại")</script>';
+}
+
 function logout(){
 	global $login_name_admin;
 	$_SESSION[$login_name_admin] = false;

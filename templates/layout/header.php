@@ -9,6 +9,7 @@
 		<div class="list-news col">
 			<a href="thong-bao.html"><i class="fa fa-bell"></i>&nbsp;Thông báo</a>
 			<a href="ho-tro.html"><i class="fa fa-info-circle"></i>&nbsp;Hỗ trợ</a>
+			<a href="lien-he.html"><i class="fa fa-phone"></i>&nbsp;Liên hệ</a>
 			<span class="social">Kết nối: <a href="<?=$company['fanpage']?>" target="_blanl"><i class="fab fa-facebook-square"></i></a>&nbsp;<a href="<?=$company['youtube']?>" target='_blank'><i class="fab fa-youtube"></i></a>
 			</span>
 		</div>
@@ -50,7 +51,7 @@
 			<p class="icon_menu_mobi_mn"><i class="fas fa-bars"></i></p>
 			<a href="" class="logo"><img src="<?=layhinh('photo','logo1')?>" alt="Banner" /></a>
 		</div>
-		<div class="col-md-6 col-12 search mt-lg-0 mt-2 d-flex align-items-center">
+		<div class="col-md-6 col-12 search mt-lg-0 mt-2 d-flex align-items-center pe-0">
 			<input type="text" name="keyword" id="keyword" class="keyword" 
 				onKeyPress="doEnter(event,'keyword');" value="Bạn muốn tìm gì..." 
 				onclick="if(this.value=='Bạn muốn tìm gì...'){this.value=''}" 
@@ -58,7 +59,7 @@
 			>
 			<i class="fa fa-search" aria-hidden="true" onclick="onSearch(event,'keyword');"></i>
 		</div>
-		<div class="col-4 ads d-lg-flex  d-none justify-content-center align-items-center">
+		<div class="col-4 ads d-lg-flex  d-none justify-content-end align-items-center p-0">
 			<a href="<?=layhinh('link','qc2')?>" class="quangcao-2" target="_blank">
 				<img src="thumb/0x80/1/<?=layhinh('photo','qc2')?>" alt="Banner" />
 			</a>

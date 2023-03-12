@@ -198,6 +198,8 @@ window.setInterval('flakeFall();',100);
 		<div class="wrap">
 			<div class="header">
 				<?php include _template."layout/header.php";?>
+			</div>
+			<div class="navbar-top p-0">
 				<?php include _template."layout/menu_top.php";?>
 			</div>
 			<div class="main_content  container <?php if($source=='index'){ echo 'margin0 border_home';} ?>">
@@ -205,7 +207,7 @@ window.setInterval('flakeFall();',100);
 				<?php if($source!="index"){ echo $bread->get();}?>
 				<?php include _template.$template."_tpl.php"; ?> 
 			</div>
-			<div class="f">
+			<div class="f footer">
 				<?php include _template."layout/doitac.php";?>
 				<?php include _template."layout/footer.php";?>
 				<?php //if($deviceType == 'computer') { include _template."layout/sphot.php"; }?>

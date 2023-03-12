@@ -14,21 +14,22 @@ $product_gia=$d->result_array();
 ?>
 <!-- END -->
 <?php $chinhsach = get_news('chinh-sach-mua-hang',5); ?>
-<div class="wap_menu mt-2">
+<div class="wap_menu row">
 	<div class="menu_mobi"><p class="icon_menu_mobi"><i class="fas fa-bars"></i> Menu</p><p class="menu_baophu"></p><a href="" class="home_mobi"><i class="fa fa-home" aria-hidden="true"></i></a></div>
-	<div class="menu container p-0">
+	<div class="menu col-12 p-0 ps-2 pe-2">
 		<ul>
 			<?php /*<li><a href="gioi-thieu.html" title="Giới thiệu">Giới thiệu</a></li>*/?>
 			<?php foreach ($baiviet as $k => $v) { ?>
 				<li class="mn-mbi"><a href="<?=$v['type']?>/<?=$v['tenkhongdau']?>-<?=$v['id']?>.html" class="item-head"><?=$v['ten']?></a></li>
 			<?php }?>
 			<?=for4cap('product_danhmuc','product_list','product_cat','product_item','san-pham','san-pham','','/','','/')?>
+			<li class='mn-mbi-off icon'><i class="fas fa-home"></i></li>
 			<?php for($i=0;$i<count($product_danhmuc);$i++){
 				$d->reset();
 				$sql="select ten$lang as ten,tenkhongdau,id,type from #_product_list where hienthi=1 and type='san-pham' and id_danhmuc=".$product_danhmuc[$i]['id']." order by stt,id desc";
 				$d->query($sql);
 				$product_list=$d->result_array();
-		?>
+			?>
 			<li class="mn-mbi-off <?php if(($i+1)==count($product_danhmuc)) echo 'last_lim'; ?>" style="position:initial;"><a href="san-pham/<?=$product_danhmuc[$i]['tenkhongdau']?>-<?=$product_danhmuc[$i]['id']?>"><?=$product_danhmuc[$i]['ten']?></a>	
 				<div class="box_list_menu">
 					<div class="grid_m">

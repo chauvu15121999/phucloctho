@@ -1,11 +1,8 @@
-
-
-
 <?php $chinhsach = get_news('chinh-sach-mua-hang',5); ?>
-<div class="wap_footer">
-	<div class="footer container p-0">
+<div class="wrap-footer">
+	<div class="container p-lg-0 pt-3">
 		<div class="wrap-footer row">
-			<div class="col col-1">
+			<div class="col-lg col-md-6 col-12 footer-item">
 				<div class="big-title">CHĂM SÓC KHÁCH HÀNG</div>
 				<div class="content">
 					<ul>
@@ -18,7 +15,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col col-2">
+			<div class="col-lg col-md-6 col-12 footer-item">
 				<div class="big-title">VỀ PHÚC LỘC THỌ</div>
 				<div class="content">
 					<ul>
@@ -35,12 +32,18 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col col-3">
+			<div class="col-lg col-md-6 col-12 footer-item">
 				<div class="big-title">THANH TOÁN</div>
-				<div class="content">
+				<div class="content row payment">
 					<?php 
-						$row = $d->fetch_array($d->query('select photo from #_background where type="payment"'));
-						echo '<img src="'._upload_hinhanh_l.$row['photo'].'" />';
+						$row = $d->result_array($d->query('select image from #_payment_method'));
+						foreach ($row as $key => $image) {
+							echo '<div class="col-5 image-payment">
+									<a>
+										<img class="image-payment" src="'._upload_khac_l.$image['image'].'" />
+									</a>
+							</div>';
+						}
 					?>
 				</div>
 				<div class="content mt-2 congthuong">
@@ -50,7 +53,22 @@
 					?>
 				</div>
 			</div>
-			<div class="col col-4">
+			<div class="col-lg col-md-6 col-12 footer-item">
+				<div class="big-title">ĐƠN VỊ VẬN CHUYỂN</div>
+				<div class="content shipping row">
+					<?php 
+						$row = $d->result_array($d->query('select photo from #_hinhthucgiaohang'));
+						foreach ($row as $key => $image) {
+							echo '<div class="col-5 image-payment">
+									<a>
+										<img class="" src="'._upload_khac_l.$image['photo'].'" />
+									</a>
+							</div>';
+						}
+					?>
+				</div>
+			</div>
+			<div class="col-lg col-md-6 col-12 footer-item">
 				<div class="big-title">HỖ TRỢ NHANH</div>
 				<div class="content">
 					<?php 
@@ -59,16 +77,16 @@
 							?>
 								<div class="support-item">
 									<div class='name'><i class="fa fa-user"></i>&nbsp; <?=$v['ten']?></div>
-									<div class="line"><i class="fa fa-phone"></i>&nbsp; Hotline: <span><?=$v['dienthoai']?></span></div>
-									<div class="line"><i class="fa fa-envelope"></i>&nbsp; Email: <span><?=$v['email']?></span></div>
+									<div class="line"><i class="fa fa-phone"></i>&nbsp; Zalo: <span><?=$v['dienthoai']?></span></div>
+									<div class="line"><i class="fa fa-envelope"></i>&nbsp; <span><?=$v['email']?></span></div>
 								</div>
 							<?php 
 						}
 					?>
 				</div>
 			</div>
-			<div class="col col-5">
-				<div class="big-title">THEO DÕI CHÚNG TÔI TRÊN</div>
+			<div class="col-lg-2 col-md-6 col-12 footer-item">
+				<div class="big-title">THEO DÕI TRÊN</div>
 				<div class="content">
 					<?php 
 						foreach($d->result_array($d->query("select * from #_lkweb where type='mxh' and hienthi > 0 order by stt asc,id desc")) as $v){
@@ -134,9 +152,6 @@
 			</div>
 			<?php }?>
 		</div>*/?>
-		
-		
-		
 	</div>
 </div>
 <div class="copy-right">

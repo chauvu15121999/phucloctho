@@ -1,0 +1,5 @@
+#rightSide {
+    width: ( 100% - $leftSide_width );
+    margin-left: $leftSide_width;
+    padding: 0;
+}

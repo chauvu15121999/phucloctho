@@ -13,7 +13,8 @@
 	include_once _lib."library.php";
 	include_once _lib."pclzip.php";
 	include_once _lib."class.database.php";
-	
+	include_once "../vendor/autoload.php";
+
 	$com = (string)(isset($_REQUEST['com'])) ? addslashes($_REQUEST['com']) : "";
 	$act = (string)(isset($_REQUEST['act'])) ? addslashes($_REQUEST['act']) : "";
 	$login_name_admin = md5($config['salt_sta'].$config['salt_end']);
@@ -38,215 +39,9 @@
 	$sql_company = "select * from #_company limit 0,1";
 	$d->query($sql_company);
 	$company= $d->fetch_array();
-
-	switch($com){
-		####Phân quyền
-		case 'import':
-			$source = "import";
-			break;
-		case 'kiot':
-			$source = "kiot";
-			break;
-		case 'thanhvien':
-			$source = "thanhvien";
-			break;
-
-		case 'comment':
-			$source = "comment";
-			break;
-
-		case 'phanquyen':
-			$source = "phanquyen";
-			break;
-
-		case 'com':
-			$source = "com";
-			break;
-
-		case 'group':
-			$source = "group";
-			break;
-
-		####Thường có
-		case 'lienhe':
-			$source = "lienhe";
-			break;
-		case 'database':
-			$source = "database";
-			break;
-		case 'backup':
-			$source = "backup";
-			break;
-
-		case 'pupop':
-			$source = "pupop";
-			break;
-
-		case 'background':
-			$source = "background";
-			break;
-
-		case 'vnexpress':
-			$source = "vnexpress";
-			break;
-
-		####Đơn hàng
-		case 'order':
-			$source = "donhang";
-			break;
-		case 'anhnen':
-			$source = "anhnen";
-			break;
-		case 'place':
-			$source = "place";
-			break;
-		case 'chitietdonhang':
-			$source = "chitietdonhang";
-			break;
-
-		case 'hinhthucgiaohang':
-			$source = "hinhthucgiaohang";
-			break;
-
-		case 'hinhthucgiaohang':
-			$source = "hinhthucgiaohang";
-			break;
-
-		case 'import':
-			$source = "import";
-			break;
-
-		case 'export':
-			$source = "export";
-			break;
-
-		case 'thanhpho':
-			$source = "thanhpho";
-			break;
-		####Đơn hàng
-
-		case 'letruot':
-			$source = "letruot";
-			break;
-
-		case 'slider':
-			$source = "slider";
-			break;
-
-		case 'newsletter':
-			$source = "newsletter";
-			break;
-
-		case 'lkweb':
-			$source = "lkweb";
-			break;
-
-		case 'video':
-			$source = "video";
-			break;
-
-		case 'photo':
-			$source = "photo";
-			break;
-
-		case 'about':
-			$source = "about";
-			break;
-
-		case 'duan':
-			$source = "duan";
-			break;
-
-		case 'congtrinh':
-			$source = "congtrinh";
-			break;
-
-		case 'gioithieu':
-			$source = "gioithieu";
-			break;
-
-		case 'khuyenmai':
-			$source = "khuyenmai";
-			break;
-
-		case 'dichvu':
-			$source = "dichvu";
-			break;
-
-		case 'news':
-			$source = "news";
-			break;
-
-		case 'tuyendung':
-			$source = "tuyendung";
-			break;
-
-		case 'product':
-			$source = "product";
-			break;
-
-		case 'yahoo':
-			$source = "yahoo";
-			break;
-
-		####Luôn tồn tại
-		case 'uploadfile':
-			$source = "uploadfile";
-			break;
-
-		case 'multi':
-			$source = "multi";
-			break;
-
-		case 'multi_upload':
-			$source = "multi_upload";
-			break;
-
-		case 'creatsitemap':
-			$source = "creatsitemap";
-			break;
-
-		case 'banner':
-			$source = "banner";
-			break;
-		case 'baiviet':
-			$source = "baiviet";
-			break;
-		case 'hinhanh':
-			$source = "hinhanh";
-			break;
-
-		case 'company':
-			$source = "company";
-			break;
-
-		case 'footer':
-			$source = "footer";
-			break;
-		case 'phanquyen':
-			$source = "phanquyen";
-			break;
-		case 'com':
-			$source = "com";
-			break;
-		case 'lienhe':
-			$source = "lienhe";
-			break;
-
-		case 'user':
-			$source = "user";
-			break;
-
-		case 'meta':
-			$source = "meta";
-			break;
-
-		####Giá trị mạc định
-		default:
-			$source = "";
-			$template = "index";
-			break;
-	}
+	$source = $com ? $com : '';
+	$template = $source ? $template : 'index';
+	if($source!="") include _source.$source.".php";
 	//dump($_SESSION['login_admin']['com']);
 	if((!isset($_SESSION[$login_name_admin]) || $_SESSION[$login_name_admin]==false) && $act!="login"){
 		redirect("index.php?com=user&act=login");
@@ -295,12 +90,6 @@
 	}else{
 		$edit_noidung_email = true;
 	}
-	
-
-
-	
-
-	if($source!="") include _source.$source.".php";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -312,11 +101,11 @@
 <title>Administrator - Hệ thống quản trị nội dung</title>
 <!--<link href="css/main.css" rel="stylesheet" type="text/css" />-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/main_repon.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link href="./assets/css/main.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/external.js"></script>
 <script src="js/jquery.price_format.2.0.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js"></script>
-
 <link href="js/plugins/multiupload/css/jquery.filer.css" type="text/css" rel="stylesheet" />
 <link href="js/plugins/multiupload/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
 
@@ -324,7 +113,9 @@
 <script type="text/javascript" src="js/plugins/multiupload/jquery.filer.min.js"></script>
 <script src="js/jquery.minicolors.js"></script>
 <link rel="stylesheet" href="css/jquery.minicolors.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 <script type="text/javascript">
   var loadFile = function(event) {
@@ -397,9 +188,9 @@
 </head>
 <?php if(isset($_SESSION[$login_name_admin]) && ($_SESSION[$login_name_admin] == true)){?>
 <body>
-<div class="page-loading"></div>
-<span class="vui"></span>
-<div class="baophu"></div>
+	<div class="page-loading"></div>
+	<span class="vui"></span>
+	<div class="baophu"></div>
 <script type="text/javascript">
 function stt(x)
 {
@@ -470,22 +261,23 @@ $(function(){
 
 })
 </script>
-
-	<div id="leftSide">
-	<?php include _template."menu_tpl.php";?>
-    </div>
-    <!-- Right side -->
-        <div id="rightSide">
-            <!-- Top fixed navigation -->
-            <div class="topNav">
-                <?php include _template."header_tpl.php";?>
-            </div>
-
-    <div class="wrapper">
-    <?php include _template.$template."_tpl.php";?>
-    </div></div>
-        <div class="clear"></div>
-    </body>
+	<div class="container-fluid body-film d-flex flex-column p-0">
+		<div id="leftSide">
+			<?php include _template."menu_tpl.php";?>
+		</div>
+		<!-- Right side -->
+		<div id="rightSide">
+			<!-- Top fixed navigation -->
+			<div class="topNav">
+				<?php include _template."header_tpl.php";?>
+			</div>
+			
+			<div class="container-fluid">
+				<?php include _template.$template."_tpl.php";?>
+			</div>
+		</div>
+	</div>
+</body>
 <?php }else {?>
     <body class="nobg loginPage">
     <?php include _template.$template."_tpl.php";?>
@@ -582,4 +374,5 @@ $(document).ready(function() {
 		
 	});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
